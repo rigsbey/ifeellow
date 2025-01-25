@@ -1,37 +1,38 @@
 <template>
-  <el-container class="layout-container">
-    <el-header height="60px">
-      <el-menu 
-        :default-active="activeMenu" 
-        mode="horizontal" 
-        router
-        class="el-menu-demo"
-      >
-        <el-menu-item index="/">Главная</el-menu-item>
-        <el-menu-item index="/diary">Дневник</el-menu-item>
-        <el-menu-item index="/tips">Советы</el-menu-item>
-        <el-menu-item index="/settings">Настройки</el-menu-item>
-      </el-menu>
-    </el-header>
+  <div class="app-container">
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <el-icon><StarFilled /></el-icon>
+        </div>
+        <span>спасибо</span>
+      </div>
+      <div class="user-icon"></div>
+    </div>
+
+    <el-menu 
+      :default-active="activeMenu" 
+      mode="horizontal" 
+      router
+      class="nav-menu"
+    >
+      <el-menu-item index="/">Главная</el-menu-item>
+      <el-menu-item index="/diary">Дневник</el-menu-item>
+      <el-menu-item index="/tips">Советы</el-menu-item>
+      <el-menu-item index="/settings">Настройки</el-menu-item>
+    </el-menu>
     
-    <el-main>
-      <template v-if="$route.path === '/'">
-        <el-row justify="center" align="middle" class="hero-section">
-          <el-col :span="16">
-            <h1 class="main-title">Срочная психологическая поддержка</h1>
-            <el-button type="primary" size="large" @click="$router.push('/diary')">
-              Начать
-            </el-button>
-          </el-col>
-        </el-row>
-      </template>
-      <router-view />
-    </el-main>
-  </el-container>
+    <router-view />
+  </div>
 </template>
 
 <script>
+import { StarFilled } from '@element-plus/icons-vue'
+
 export default {
+  components: {
+    StarFilled
+  },
   computed: {
     activeMenu() {
       return this.$route.path;
@@ -41,46 +42,71 @@ export default {
 </script>
 
 <style>
-.layout-container {
+body {
+  margin: 0;
+  padding: 0;
+  background: #FAFAFD;
   min-height: 100vh;
 }
 
-.el-header {
-  padding: 0;
-  background-color: var(--el-bg-color);
-  border-bottom: 1px solid var(--el-border-color-light);
+.app-container {
+  min-height: 100vh;
 }
 
-.el-menu-demo {
+.header {
+  padding: 20px 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  background: #E31235;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  color: white;
+  font-size: 24px;
 }
 
-.hero-section {
-  padding: 60px 0;
-  text-align: center;
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  background: white;
+  border-bottom: 1px solid #F0F1F6;
 }
 
-.main-title {
-  font-family: 'Gilroy', sans-serif;
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--el-text-color-primary);
-  margin-bottom: 32px;
+.user-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #F0F1F6;
 }
 
-/* Глобальные стили Element Plus */
-:root {
-  --el-color-primary: #6c63ff;
-  --el-font-family: 'Gilroy', sans-serif;
+/* Стили для Element Plus компонентов */
+:deep(.el-menu) {
+  border-bottom: none;
 }
 
-/* Переопределение стилей Element Plus */
-.el-button {
-  font-family: 'Gilroy', sans-serif;
-}
-
-.el-menu-item {
+:deep(.el-menu-item) {
   font-family: 'Gilroy', sans-serif;
   font-size: 16px;
+  height: 50px;
+  line-height: 50px;
+}
+
+:deep(.el-menu-item.is-active) {
+  color: #2864A4;
+  border-bottom: 2px solid #2864A4;
 }
 </style>
