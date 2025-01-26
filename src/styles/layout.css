@@ -1,0 +1,67 @@
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1400px) {
+  .main-content {
+    max-width: 1000px;
+  }
+}
+
+.content {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #15293E;
+  margin-bottom: 16px;
+}
+
+.description {
+  color: #696E76;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.recommendation-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.recommendation-button {
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.recommendation-button:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.main-title {
+  font-family: var(--font-heading);
+}
+
+/* Основной текст */
+body {
+  font-family: var(--font-body);
+} 

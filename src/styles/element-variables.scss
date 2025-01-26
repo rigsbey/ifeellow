@@ -1,0 +1,30 @@
+/* Переопределение переменных Element Plus */
+$--color-primary: #6c63ff; // Основной цвет
+$--color-secondary: #ff7f50; // Акцентный цвет (теплый оранжевый)
+$--color-background: #f5f5f5; // Фоновый цвет
+$--font-size-large: 18px;
+$--font-size-medium: 16px;
+$--font-size-small: 14px; // Новый размер шрифта
+
+// Используем Rubik как основной шрифт
+$--font-family: 'Rubik', sans-serif;
+
+// Применяем шрифт Rubik для всех элементов Element Plus
+:root {
+  --el-font-family: 'Rubik', sans-serif;
+  --el-button-bg-color: transparent;
+  --el-button-border-color: #E5E7EB;
+  --el-button-hover-bg-color: #F9FAFB;
+  --el-button-hover-border-color: #D1D5DB;
+  --el-button-active-bg-color: #F3F4F6;
+  --el-button-active-border-color: #9CA3AF;
+  --el-button-text-color: #374151;
+}
+
+:deep(.el-button) {
+  box-shadow: none;
+}
+
+:deep(.el-button:hover) {
+  transform: translateY(-1px);
+}

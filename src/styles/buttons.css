@@ -1,0 +1,31 @@
+.action-button {
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+}
+
+.action-button i {
+  font-size: 20px;
+}
+
+.action-button--text {
+  border: none;
+  padding: 8px 16px;
+}
+
+.action-button--text:hover {
+  background: transparent;
+  color: #111827;
+} 

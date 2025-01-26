@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../assets/fonts/Gilroy-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Gilroy-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../assets/fonts/Gilroy-Bold.woff2') format('woff2'),
+       url('../assets/fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Подключаем шрифты через Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Rubik:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Montserrat:wght@400;600;700&display=swap');
+
+/* Обновляем переменные шрифтов */
+:root {
+  --font-heading: 'Montserrat', sans-serif; /* Заголовки */
+  --font-body: 'Lora', serif; /* Основной текст */
+}
+
+/* Применяем шрифты к основным элементам */
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.main-title {
+  font-family: var(--font-heading);
+}
+
+/* Обновляем стили Element Plus */
+:deep(.el-button),
+:deep(.el-input__inner),
+:deep(.el-menu-item) {
+  font-family: var(--font-body);
+}
+
+/* Специальные классы */
+.heading-font {
+  font-family: var(--font-heading);
+}
+
+.body-font {
+  font-family: var(--font-body);
+} 
