@@ -17,6 +17,10 @@ module.exports = defineConfig({
         from: path.resolve(__dirname, 'public/breathing-animation.lottie'),
         to: path.resolve(__dirname, 'dist')
       })
+      options.patterns.push({
+        from: path.resolve(__dirname, 'public/sitemap.xml'),
+        to: path.resolve(__dirname, 'dist')
+      })
       return [options]
     })
     
