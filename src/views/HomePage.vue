@@ -14,7 +14,7 @@
         <el-button class="transparent-button" @click="$router.push('/exercises')">
           Relieve Stress
         </el-button>
-        <el-button class="transparent-button" @click="$router.push('/diary')">
+        <el-button class="transparent-button" @click="$router.push('/hotline')">
           I Want to Talk
         </el-button>
       </div>
