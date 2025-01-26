@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /ifeellow/sitemap.xml
+Allow: /
+
+Sitemap: https://rigsbey.github.io/ifeellow/sitemap.xml 
