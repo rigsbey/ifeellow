@@ -1,53 +1,17 @@
 <template>
-  <div class="main-content">
-    <div class="content onboarding-content">
+  <div class="content-container">
+    <div class="content-card">
       <h1 class="main-title">We're here to help you through difficult times</h1>
-      
-      <div class="settings-section">
-        <h3 class="subsection-title">Application Settings</h3>
-        
-        <div class="settings-group">
-          <div class="setting-item">
-            <div class="setting-info">
-              <span class="setting-label">Email notifications</span>
-              <span class="setting-description">Receive reminders and tips via email</span>
-            </div>
-            <el-switch
-              v-model="emailNotifications"
-              @change="updateNotifications('email')"
-            />
-          </div>
-
-          <div class="setting-item">
-            <div class="setting-info">
-              <span class="setting-label">Browser notifications</span>
-              <span class="setting-description">Receive reminders in browser</span>
-            </div>
-            <el-switch
-              v-model="browserNotifications"
-              @change="updateNotifications('browser')"
-            />
-          </div>
-
-          <div class="setting-item">
-            <div class="setting-info">
-              <span class="setting-label">Dark mode</span>
-              <span class="setting-description">Enable dark mode interface</span>
-            </div>
-            <el-switch
-              v-model="darkMode"
-              @change="toggleTheme"
-            />
-          </div>
-        </div>
-      </div>
+      <p class="description">
+        Our platform provides immediate psychological support and practical tools to help you cope with stress and anxiety.
+      </p>
 
       <div class="onboarding-actions">
-        <el-button type="primary" @click="startApp">
+        <el-button type="primary" class="start-button" @click="startApp">
           Start
         </el-button>
-        <el-button text @click="skipOnboarding">
-          Skip setup
+        <el-button text @click="skipOnboarding" class="skip-button">
+          Skip
         </el-button>
       </div>
     </div>
@@ -55,83 +19,98 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default {
   name: 'OnboardingPage',
   
   setup() {
-    const store = useStore();
-    const router = useRouter();
-    
-    const emailNotifications = ref(false);
-    const browserNotifications = ref(false);
-    const darkMode = ref(false);
-
-    const updateNotifications = async (type) => {
-      if (type === 'browser' && browserNotifications.value) {
-        const permission = await Notification.requestPermission();
-        browserNotifications.value = permission === 'granted';
-      }
-      store.commit('setNotifications', {
-        type,
-        value: type === 'email' ? emailNotifications.value : browserNotifications.value
-      });
-    };
-
-    const toggleTheme = () => {
-      store.commit('setTheme', darkMode.value ? 'dark' : 'light');
-    };
+    const router = useRouter()
+    const store = useStore()
 
     const startApp = () => {
-      store.commit('setVisitedBefore');
-      router.push('/home');
-    };
+      store.commit('setVisitedBefore')
+      router.push('/home')
+    }
 
     const skipOnboarding = () => {
-      store.commit('setVisitedBefore');
-      router.push('/home');
-    };
+      store.commit('setVisitedBefore')
+      router.push('/home')
+    }
 
     return {
-      emailNotifications,
-      browserNotifications,
-      darkMode,
-      updateNotifications,
-      toggleTheme,
       startApp,
       skipOnboarding
-    };
+    }
   },
+  
   mounted() {
-    localStorage.setItem('visitedBefore', 'true');
+    localStorage.setItem('visitedBefore', 'true')
   }
-};
+}
 </script>
 
 <style scoped>
-.onboarding-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 60px 40px;
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.content-card {
+  max-width: 600px;
+  text-align: center;
 }
 
 .main-title {
-  font-size: 36px;
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 700;
   color: #15293E;
-  text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: #696E76;
+  margin-bottom: 48px;
+  line-height: 1.6;
 }
 
 .onboarding-actions {
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Остальные стили наследуются из общего дизайна */
+.start-button {
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+}
+
+.skip-button {
+  font-size: 16px;
+  color: #696E76;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 36px;
+  }
+  
+  .description {
+    font-size: 18px;
+  }
+  
+  .content-card {
+    padding: 24px;
+  }
+}
 </style> 

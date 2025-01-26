@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar v-if="!isHomePage"></nav-bar>
+    <nav-bar></nav-bar>
     <div class="page-container">
       <router-view></router-view>
     </div>
@@ -9,8 +9,6 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
 
 export default {
@@ -19,9 +17,6 @@ export default {
     NavBar
   },
   setup() {
-    const route = useRoute()
-    const isHomePage = computed(() => route.path === '/')
-    
     useHead({
       title: 'Immediate Help for Stress and Anxiety | Online Support',
       meta: [
@@ -30,10 +25,6 @@ export default {
         { name: 'author', content: 'Your Name' }
       ]
     })
-
-    return {
-      isHomePage
-    }
   }
 }
 </script>

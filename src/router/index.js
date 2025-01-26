@@ -1,23 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import OnboardingPage from '../views/OnboardingPage.vue';
 import DiaryPage from '../views/DiaryPage.vue';
 import TipsPage from '../views/TipsPage.vue';
 import SettingsPage from '../views/SettingsPage.vue';
 import DiagnosticsPage from '../views/DiagnosticsPage.vue';
 import ExercisesPage from '../views/ExercisesPage.vue';
 import HotlinePage from '../views/HotlinePage.vue';
+import HomePage from '@/views/HomePage.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'Onboarding',
-    component: OnboardingPage,
-    meta: { skipIfVisited: true }
-  },
-  {
-    path: '/home',
     name: 'Home',
-    component: () => import('@/views/HomePage.vue')
+    component: HomePage
   },
   {
     path: '/diary',
