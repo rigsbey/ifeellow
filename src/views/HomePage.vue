@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { useMeta } from 'vue-meta'
+import { useHead } from '@vueuse/head'
 
 export default {
   name: 'HomePage',
@@ -43,14 +43,15 @@ export default {
     }
   },
   setup() {
-    // Обновленные мета-теги для главной страницы
-    useMeta({
+    useHead({
       title: 'How to Calm Anxiety Quickly | Online Stress Relief',
       meta: [
         { name: 'description', content: 'Discover quick and effective techniques to calm anxiety and manage stress. Breathing exercises, grounding techniques, and more.' },
         { name: 'keywords', content: 'calm anxiety, stress relief, breathing exercises, grounding techniques, mental health hotline' }
       ]
-    });
+    })
+
+    return {}
   }
 }
 </script>
@@ -96,24 +97,26 @@ export default {
 
 .action-buttons {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  justify-content: center;
-  margin: 24px 0;
+  max-width: 300px;
+  margin: 32px auto;
 }
 
 .action-button {
-  background: transparent;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
   padding: 12px 24px;
-  color: #374151;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background-color: #4A90E2;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
-  background: #F9FAFB;
-  border-color: #D1D5DB;
+  background-color: #357ABD;
 }
 
 /* Стили для Element Plus компонентов */

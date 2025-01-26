@@ -104,6 +104,9 @@ export default {
       startApp,
       skipOnboarding
     };
+  },
+  mounted() {
+    localStorage.setItem('visitedBefore', 'true');
   }
 };
 </script>

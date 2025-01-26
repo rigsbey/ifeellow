@@ -9,15 +9,12 @@ module.exports = defineConfig({
       alias: {
         '@': path.resolve(__dirname, 'src/')
       }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.json$/,
-          type: 'javascript/auto',
-          use: ['json-loader']
-        }
-      ]
     }
+  },
+  chainWebpack: config => {
+    config.plugin('html').tap(args => {
+      args[0].title = 'ifeellow - Psychological Support';
+      return args;
+    })
   }
 })

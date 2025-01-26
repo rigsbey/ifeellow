@@ -48,6 +48,10 @@ const routes = [
     path: '/hotline',
     name: 'Hotline',
     component: HotlinePage
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
 ];
 
@@ -58,6 +62,7 @@ const router = createRouter({
 
 // Проверка первого посещения
 router.beforeEach((to, from, next) => {
+  console.log('Route change:', to.path); // Добавьте для отладки
   const visitedBefore = localStorage.getItem('visitedBefore');
   if (to.meta.skipIfVisited && visitedBefore === 'true') {
     next('/home');

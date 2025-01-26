@@ -11,7 +11,7 @@
 import NavBar from '@/components/NavBar.vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useMeta } from 'vue-meta'
+import { useHead } from '@vueuse/head'
 
 export default {
   name: 'App',
@@ -22,15 +22,14 @@ export default {
     const route = useRoute()
     const isHomePage = computed(() => route.path === '/')
     
-    // Обновленные мета-теги для приложения
-    useMeta({
+    useHead({
       title: 'Immediate Help for Stress and Anxiety | Online Support',
       meta: [
         { name: 'description', content: 'Get immediate help for stress and anxiety with our online support. Breathing exercises, grounding techniques, and more.' },
         { name: 'keywords', content: 'stress relief, anxiety help, mental health support, breathing exercises, grounding techniques' },
         { name: 'author', content: 'Your Name' }
       ]
-    });
+    })
 
     return {
       isHomePage

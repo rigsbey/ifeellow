@@ -3,16 +3,14 @@ import App from './App.vue';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import './styles/element-variables.scss';
-import { router } from './router';
+import router from './router';
 import { store } from './store';
-import { createMetaManager } from 'vue-meta';
+import { createHead } from '@vueuse/head'
 
 const app = createApp(App);
+const head = createHead()
 
-// Создайте менеджер метаданных
-const metaManager = createMetaManager();
-app.use(metaManager);
-
+app.use(head)
 app.use(router);
 app.use(ElementPlus);
 app.use(store);
