@@ -3,9 +3,10 @@
     <el-row justify="center" align="middle">
       <el-col :span="16">
         <div class="hero-section">
-          <div class="hero-image">
-            <img src="/psychological-support.png" alt="Psychological Support" />
-          </div>
+          <!-- Закомментируйте или удалите блок с изображением -->
+          <!-- <div class="hero-image">
+            <img src="@/assets/psychological-support.png" alt="Psychological Support" />
+          </div> -->
           <h1 class="main-title">Emergency Psychological Support</h1>
           <p class="description">
             We provide professional psychological support online.

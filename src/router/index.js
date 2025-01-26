@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '../views/HomePage.vue';
 import OnboardingPage from '../views/OnboardingPage.vue';
 import DiaryPage from '../views/DiaryPage.vue';
 import TipsPage from '../views/TipsPage.vue';
@@ -18,7 +17,7 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: HomePage
+    component: () => import('@/views/HomePage.vue')
   },
   {
     path: '/diary',
@@ -53,7 +52,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/ifeellow/' : '/'),
   routes
 });
 
