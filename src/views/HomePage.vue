@@ -1,34 +1,24 @@
 <template>
-  <div class="main-content">
-    <el-row justify="center" align="middle">
-      <el-col :span="16">
-        <div class="hero-section">
-          <!-- Закомментируйте или удалите блок с изображением -->
-          <!-- <div class="hero-image">
-            <img src="@/assets/psychological-support.png" alt="Psychological Support" />
-          </div> -->
-          <h1 class="main-title">Emergency Psychological Support</h1>
-          <p class="description">
-            We provide professional psychological support online.
-            Our specialists are ready to help you cope with any life situations.
-          </p>
-          
-          <div class="action-buttons">
-            <button class="action-button" @click="startDiagnostics">
-              I Need Help
-            </button>
-            
-            <button class="action-button" @click="$router.push('/exercises')">
-              Relieve Stress
-            </button>
-            
-            <button class="action-button" @click="$router.push('/hotline')">
-              I Want to Talk
-            </button>
-          </div>
-        </div>
-      </el-col>
-    </el-row>
+  <div class="content-container">
+    <div class="content-card">
+      <h2 class="section-title">Emergency Psychological Support</h2>
+      <p class="description">
+        We provide professional psychological support online. 
+        Our specialists are ready to help you cope with any life situations.
+      </p>
+
+      <div class="action-buttons">
+        <el-button class="transparent-button" @click="$router.push('/hotline')">
+          I Need Help
+        </el-button>
+        <el-button class="transparent-button" @click="$router.push('/exercises')">
+          Relieve Stress
+        </el-button>
+        <el-button class="transparent-button" @click="$router.push('/diary')">
+          I Want to Talk
+        </el-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -57,66 +47,75 @@ export default {
 </script>
 
 <style scoped>
-.main-content {
-  padding: 30px 100px;
-  min-height: calc(100vh - 140px); /* Учитываем высоту header и nav */
-}
-
-.hero-section {
-  text-align: center;
-  padding: 40px 0;
-}
-
-.hero-image {
-  margin-bottom: 32px;
-}
-
-.hero-image img {
-  max-width: 200px;
-  height: auto;
+.content-container {
+  padding: 30px 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  display: block;
 }
 
-.main-title {
+.content-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.section-title {
   font-size: 48px;
   font-weight: 700;
   color: #15293E;
-  margin-bottom: 20px;
-  font-family: var(--font-heading); /* Montserrat */
+  margin-bottom: 24px;
 }
 
 .description {
+  font-family: 'Lora', serif;
   font-size: 18px;
   color: #696E76;
   max-width: 600px;
-  margin: 0 auto 32px;
+  margin: 0 auto 48px;
   line-height: 1.6;
-  font-family: var(--font-body); /* Lora */
+  text-align: center;
 }
 
 .action-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 300px;
+  justify-content: center;
+  gap: 20px;
   margin: 32px auto;
 }
 
-.action-button {
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  background-color: #4A90E2;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Новый стиль для прозрачных кнопок */
+.transparent-button {
+  width: 145px !important;
+  height: 45px !important;
+  border: 2px solid #15293E !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: #15293E !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  padding: 0 !important;
+  transition: all 0.3s ease !important;
 }
 
-.action-button:hover {
-  background-color: #357ABD;
+.transparent-button:hover {
+  background: rgba(21, 41, 62, 0.05) !important;
+  transform: translateY(-2px);
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .transparent-button {
+    width: 200px !important;
+  }
 }
 
 /* Стили для Element Plus компонентов */

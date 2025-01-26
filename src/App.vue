@@ -39,11 +39,23 @@ export default {
 </script>
 
 <style>
-@import './styles/layout.css';
+/* Добавляем глобальные стили для шрифтов */
+:root {
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Lora', serif;
+}
 
 #app {
   min-height: 100vh;
   background: #FAFAFD;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+body {
+  font-family: var(--font-body);
 }
 
 .page-container {
@@ -60,6 +72,50 @@ export default {
 
   .content {
     padding: 24px;
+  }
+}
+
+/* Общие стили для всех страниц */
+.content-container {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: #15293E;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: #696E76;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 20px 16px;
+  }
+  
+  .content-card {
+    padding: 24px;
+  }
+  
+  .section-title {
+    font-size: 28px;
   }
 }
 </style>

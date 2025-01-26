@@ -9,6 +9,38 @@
 
       <div class="exercises-content">
         <el-tabs v-model="activeExercise">
+          <el-tab-pane label="4-4-6 Breathing" name="breathing">
+            <div class="exercise-card">
+              <h3>Breathing Exercise</h3>
+              <p>Follow the animation and breathe in the indicated rhythm:</p>
+              
+              <div class="animation-container">
+                <div class="breathing-text" v-if="isBreathingActive">
+                  {{ breathingPhase }}
+                </div>
+                
+                <dotlottie-player
+                  ref="lottiePlayer"
+                  src="/ifeellow/breathing-animation.lottie"
+                  background="transparent"
+                  speed="1"
+                  style="width: 300px; height: 300px;"
+                  :autoplay="false"
+                  :loop="true"
+                ></dotlottie-player>
+                
+                <el-button 
+                  type="primary"
+                  class="breathing-button" 
+                  @click="toggleBreathing"
+                  size="large"
+                >
+                  {{ isBreathingActive ? 'Stop' : 'Start' }}
+                </el-button>
+              </div>
+            </div>
+          </el-tab-pane>
+
           <el-tab-pane label="Let Thoughts Fly" name="thoughts">
             <div class="exercise-card">
               <h3>Let Your Thoughts Go</h3>
@@ -50,37 +82,6 @@
                     <el-button @click="resetExercise">Try again</el-button>
                   </div>
                 </transition>
-              </div>
-            </div>
-          </el-tab-pane>
-
-          <el-tab-pane label="4-4-6 Breathing" name="breathing">
-            <div class="exercise-card">
-              <h3>Breathing Exercise</h3>
-              <p>Follow the animation and breathe in the indicated rhythm:</p>
-              
-              <div class="breathing-animation" :class="{ active: isBreathingActive }">
-                <div class="circle-container">
-                  <dotlottie-player
-                    ref="lottiePlayer"
-                    src="/breathing-animation.lottie"
-                    background="transparent"
-                    speed="1"
-                    style="width: 300px; height: 300px"
-                    :autoplay="false"
-                    :loop="true"
-                  ></dotlottie-player>
-                </div>
-              </div>
-
-              <div class="exercise-controls">
-                <el-button 
-                  type="primary" 
-                  @click="toggleBreathing"
-                  :loading="isBreathingActive"
-                >
-                  {{ isBreathingActive ? 'Stop' : 'Start' }}
-                </el-button>
               </div>
             </div>
           </el-tab-pane>
@@ -307,7 +308,6 @@
 </template>
 
 <script setup>
-import { DotLottiePlayer } from '@dotlottie/player-component'
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { gsap } from 'gsap'
 import anime from 'animejs'
@@ -318,19 +318,21 @@ import {
   Compass,
   ForkSpoon
 } from '@element-plus/icons-vue'
+import { DotLottiePlayer } from '@dotlottie/player-component'
 
 console.log('Компонент ExercisesPage инициализирован')
 
 const isBreathingActive = ref(false)
 const showFeedback = ref(false)
 const activeExercise = ref('breathing')
-const lottiePlayer = ref(null)
 const thought = ref('')
 const isThoughtFlying = ref(false)
 const showThought = ref(false)
 const showCompletionMessage = ref(false)
 const groundingStep = ref(0)
 const isCurrentStepComplete = ref(false)
+const breathingPhase = ref('')
+const lottiePlayer = ref(null)
 
 // Отслеживаем изменение активного упражнения
 watch(activeExercise, (newValue) => {
@@ -347,14 +349,9 @@ const grounding = ref({
 
 onMounted(() => {
   console.log('Компонент смонтирован')
-  try {
-    if (!customElements.get('dotlottie-player')) {
-      console.log('Регистрируем dotlottie-player компонент')
-      customElements.define('dotlottie-player', DotLottiePlayer)
-    }
-    console.log('dotlottie-player успешно зарегистрирован')
-  } catch (error) {
-    console.error('Ошибка при регистрации dotlottie-player:', error)
+  // Проверяем, зарегистрирован ли компонент
+  if (!customElements.get('dotlottie-player')) {
+    customElements.define('dotlottie-player', DotLottiePlayer)
   }
 })
 
@@ -375,65 +372,41 @@ const toggleBreathing = () => {
 }
 
 const startBreathing = () => {
-  console.log('Инициализация дыхательного упражнения')
+  console.log('Начинаем упражнение')
   isBreathingActive.value = true
   
   const player = document.querySelector('dotlottie-player')
-  console.log('Найден плеер:', player)
-  
   if (player) {
-    console.log('Запуск анимации')
+    console.log('Запускаем анимацию')
     player.play()
-  } else {
-    console.warn('Плеер не найден')
+    
+    gsap.timeline({ repeat: -1 })
+      .to(breathingPhase, {
+        duration: 4,
+        onStart: () => breathingPhase.value = 'Breathe in...',
+      })
+      .to(breathingPhase, {
+        duration: 4,
+        onStart: () => breathingPhase.value = 'Hold...',
+      })
+      .to(breathingPhase, {
+        duration: 6,
+        onStart: () => breathingPhase.value = 'Breathe out...',
+      })
   }
-
-  console.log('Настройка временной шкалы GSAP')
-  const timeline = gsap.timeline({
-    repeat: -1,
-    onRepeat: () => {
-      console.log('Повтор цикла дыхания')
-      if (!isBreathingActive.value) {
-        console.log('Остановка цикла')
-        timeline.kill()
-      }
-    }
-  })
-
-  timeline
-    .to({}, {
-      duration: 4,
-      onStart: () => {
-        console.log('Фаза: Вдох')
-      }
-    })
-    .to({}, {
-      duration: 4,
-      onStart: () => {
-        console.log('Фаза: Задержка')
-      }
-    })
-    .to({}, {
-      duration: 6,
-      onStart: () => {
-        console.log('Фаза: Выдох')
-      }
-    })
 }
 
 const stopBreathing = () => {
-  console.log('Остановка дыхательного упражнения')
+  console.log('Останавливаем упражнение')
   isBreathingActive.value = false
+  breathingPhase.value = ''
   
   const player = document.querySelector('dotlottie-player')
-  console.log('Найден плеер для остановки:', player)
-  
   if (player) {
-    console.log('Остановка анимации')
     player.stop()
-  } else {
-    console.warn('Плеер не найден при остановке')
   }
+  
+  gsap.killTweensOf(breathingPhase)
   
   showFeedback.value = true
   console.log('Показываем форму обратной связи')
@@ -616,46 +589,41 @@ const resetGrounding = () => {
 
 .exercise-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
-.breathing-animation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px 0;
-}
-
-.circle-container {
+.animation-container {
   position: relative;
   width: 300px;
-  height: 300px;
-  margin: 0 auto;
+  height: 400px;
+  margin: 20px auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-dotlottie-player {
+.breathing-text {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  z-index: 0;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: 500;
+  color: #2864A4;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 1;
 }
 
-.timer {
-  font-size: 48px;
-  color: #2864A4;
-  font-weight: 700;
-  text-align: center;
-  margin-top: 20px;
-  opacity: 0.9;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+.breathing-button {
+  margin-top: 20px !important;
+  width: 120px !important;
 }
 
 .grounding-steps {

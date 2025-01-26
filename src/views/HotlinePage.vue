@@ -1,10 +1,10 @@
 <template>
-  <div class="main-content">
-    <div class="content">
-      <h2 class="section-title">Hotlines</h2>
+  <div class="content-container">
+    <div class="content-card">
+      <h2 class="section-title">Emergency Support</h2>
       <p class="description">
-        If you need urgent help or professional consultation,
-        use one of these helplines.
+        If you need immediate support, our specialists are available 24/7
+        to help you through any crisis.
       </p>
 
       <div class="hotline-content">
@@ -121,6 +121,26 @@ export default {
 </script>
 
 <style scoped>
+.content-container {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #15293E;
+  margin-bottom: 16px;
+}
+
 .hotline-content {
   margin-top: 40px;
 }

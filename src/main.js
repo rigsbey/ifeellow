@@ -6,6 +6,7 @@ import './styles/element-variables.scss';
 import router from './router';
 import { store } from './store';
 import { createHead } from '@vueuse/head'
+import '@dotlottie/player-component'
 
 const app = createApp(App);
 const head = createHead()

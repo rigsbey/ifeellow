@@ -1,10 +1,10 @@
 <template>
-  <div class="main-content">
-    <div class="content">
-      <h2 class="section-title">Self-Assessment Test</h2>
+  <div class="content-container">
+    <div class="content-card">
+      <h2 class="section-title">Diagnostics</h2>
       <p class="description">
-        Answer a few questions so we can better understand your condition
-        and offer appropriate support.
+        Answer a few questions to help us understand your current state
+        and provide the most appropriate support.
       </p>
 
       <div class="diagnostics-content" v-if="!testCompleted">
@@ -236,6 +236,26 @@ export default {
 </script>
 
 <style scoped>
+.content-container {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #15293E;
+  margin-bottom: 16px;
+}
+
 .steps {
   margin-bottom: 40px;
 }
@@ -306,10 +326,6 @@ export default {
   display: flex;
   gap: 20px;
   margin-top: 30px;
-}
-
-.section-title {
-  font-family: var(--font-heading);
 }
 
 .description {
