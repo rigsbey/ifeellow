@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "npm run build && gh-pages -d dist --branch gh-pages"
+    "deploy": "npm run build && gh-pages -d dist --branch master"
   },
   "dependencies": {
     "@dotlottie/player-component": "^2.7.12",
