@@ -1,112 +1,66 @@
 <template>
-  <div class="app-container">
-    <div class="header">
-      <div class="logo">
-        <div class="logo-icon">
-          <el-icon><StarFilled /></el-icon>
-        </div>
-        <span>спасибо</span>
-      </div>
-      <div class="user-icon"></div>
+  <div id="app">
+    <nav-bar v-if="!isHomePage"></nav-bar>
+    <div class="page-container">
+      <router-view></router-view>
     </div>
-
-    <el-menu 
-      :default-active="activeMenu" 
-      mode="horizontal" 
-      router
-      class="nav-menu"
-    >
-      <el-menu-item index="/">Главная</el-menu-item>
-      <el-menu-item index="/diary">Дневник</el-menu-item>
-      <el-menu-item index="/tips">Советы</el-menu-item>
-      <el-menu-item index="/settings">Настройки</el-menu-item>
-    </el-menu>
-    
-    <router-view />
   </div>
 </template>
 
 <script>
-import { StarFilled } from '@element-plus/icons-vue'
+import NavBar from '@/components/NavBar.vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useMeta } from 'vue-meta'
 
 export default {
+  name: 'App',
   components: {
-    StarFilled
+    NavBar
   },
-  computed: {
-    activeMenu() {
-      return this.$route.path;
+  setup() {
+    const route = useRoute()
+    const isHomePage = computed(() => route.path === '/')
+    
+    // Обновленные мета-теги для приложения
+    useMeta({
+      title: 'Immediate Help for Stress and Anxiety | Online Support',
+      meta: [
+        { name: 'description', content: 'Get immediate help for stress and anxiety with our online support. Breathing exercises, grounding techniques, and more.' },
+        { name: 'keywords', content: 'stress relief, anxiety help, mental health support, breathing exercises, grounding techniques' },
+        { name: 'author', content: 'Your Name' }
+      ]
+    });
+
+    return {
+      isHomePage
     }
   }
-};
+}
 </script>
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
+@import './styles/layout.css';
+
+#app {
+  min-height: 100vh;
   background: #FAFAFD;
-  min-height: 100vh;
 }
 
-.app-container {
-  min-height: 100vh;
+.page-container {
+  min-height: calc(100vh - 60px); /* Высота минус высота навбара */
+  padding-top: 20px;
+  box-sizing: border-box;
 }
 
-.header {
-  padding: 20px 130px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-}
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px 16px;
+  }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo-icon {
-  background: #E31235;
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24px;
-}
-
-.nav-menu {
-  display: flex;
-  justify-content: center;
-  background: white;
-  border-bottom: 1px solid #F0F1F6;
-}
-
-.user-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #F0F1F6;
-}
-
-/* Стили для Element Plus компонентов */
-:deep(.el-menu) {
-  border-bottom: none;
-}
-
-:deep(.el-menu-item) {
-  font-family: 'Gilroy', sans-serif;
-  font-size: 16px;
-  height: 50px;
-  line-height: 50px;
-}
-
-:deep(.el-menu-item.is-active) {
-  color: #2864A4;
-  border-bottom: 2px solid #2864A4;
+  .content {
+    padding: 24px;
+  }
 }
 </style>
