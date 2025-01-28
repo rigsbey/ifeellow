@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@dotlottie/player-component": "^2.7.12",
+    "@emailjs/browser": "^4.4.1",
     "@lottiefiles/dotlottie-vue": "^0.5.5",
     "@phosphor-icons/vue": "^2.2.1",
     "@vueuse/head": "^2.0.0",

@@ -4,17 +4,20 @@
     <div class="page-container">
       <router-view></router-view>
     </div>
+    <feedback-form></feedback-form>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import FeedbackForm from '@/components/FeedbackForm.vue'
 import { useHead } from '@vueuse/head'
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    FeedbackForm
   },
   setup() {
     useHead({
