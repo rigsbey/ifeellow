@@ -41,51 +41,6 @@
             </div>
           </el-tab-pane>
 
-          <el-tab-pane label="Let Thoughts Fly" name="thoughts">
-            <div class="exercise-card">
-              <h3>Let Your Thoughts Go</h3>
-              <p>Write down what's bothering you, and watch it dissolve into the air.</p>
-              
-              <div class="thoughts-exercise input-container" v-if="!isThoughtFlying">
-                <el-input
-                  v-model="thought"
-                  type="textarea"
-                  :rows="4"
-                  placeholder="Describe your worry, fear, or unpleasant feeling..."
-                  :disabled="isThoughtFlying"
-                />
-                
-                <el-button 
-                  type="primary" 
-                  @click="letThoughtFly"
-                  :disabled="!thought"
-                  class="release-button"
-                >
-                  Let it go
-                </el-button>
-              </div>
-              
-              <div v-else class="flying-thought-container">
-                <div class="particles">
-                  <div v-for="n in 12" :key="n" class="particle"></div>
-                </div>
-                <transition name="fade">
-                  <div v-if="showThought" class="flying-thought">
-                    {{ thought }}
-                  </div>
-                </transition>
-                
-                <transition name="fade">
-                  <div v-if="showCompletionMessage" class="completion-message">
-                    <h4>You've let it go</h4>
-                    <p>Your thoughts no longer have power over you</p>
-                    <el-button @click="resetExercise">Try again</el-button>
-                  </div>
-                </transition>
-              </div>
-            </div>
-          </el-tab-pane>
-
           <el-tab-pane label="Grounding" name="grounding">
             <div class="exercise-card">
               <h3>Grounding Technique</h3>
@@ -310,7 +265,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { gsap } from 'gsap'
-import anime from 'animejs'
 import { 
   View, 
   Pointer,
@@ -325,10 +279,6 @@ console.log('Компонент ExercisesPage инициализирован')
 const isBreathingActive = ref(false)
 const showFeedback = ref(false)
 const activeExercise = ref('breathing')
-const thought = ref('')
-const isThoughtFlying = ref(false)
-const showThought = ref(false)
-const showCompletionMessage = ref(false)
 const groundingStep = ref(0)
 const isCurrentStepComplete = ref(false)
 const breathingPhase = ref('')
@@ -422,57 +372,6 @@ const submitFeedback = (result) => {
 watch(() => grounding.value, (newValue) => {
   console.log('Обновлены данные заземления:', newValue)
 }, { deep: true })
-
-const letThoughtFly = () => {
-  if (!thought.value) return
-  
-  isThoughtFlying.value = true
-  showThought.value = true
-  
-  const thoughtElement = document.querySelector('.flying-thought')
-  
-  anime.timeline({
-    easing: 'easeOutExpo',
-    complete: () => {
-      showThought.value = false
-      setTimeout(() => {
-        showCompletionMessage.value = true
-      }, 500)
-    }
-  })
-  .add({
-    targets: '.input-container',
-    opacity: 0,
-    translateY: 20,
-    duration: 600
-  })
-  .add({
-    targets: thoughtElement,
-    translateY: [-20, -300],
-    translateX: [0, 200],
-    opacity: [1, 0],
-    scale: [1, 0.85],
-    duration: 2000,
-    delay: 200
-  })
-  .add({
-    targets: '.particle',
-    opacity: [1, 0],
-    scale: [1, 0],
-    translateX: function() { return anime.random(-100, 100) },
-    translateY: function() { return anime.random(-100, 0) },
-    duration: 1500,
-    delay: anime.stagger(100),
-    easing: 'easeOutExpo'
-  }, '-=2000')
-}
-
-const resetExercise = () => {
-  thought.value = ''
-  isThoughtFlying.value = false
-  showThought.value = false
-  showCompletionMessage.value = false
-}
 
 const getVisualPlaceholder = (index) => {
   const examples = [
