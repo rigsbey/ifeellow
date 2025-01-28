@@ -19,6 +19,19 @@
         </el-button>
       </div>
     </div>
+
+    <!-- Обновленная секция со статьями -->
+    <div class="content-card articles-section">
+      <h2 class="section-title">Featured Articles</h2>
+      <div class="articles-list">
+        <div v-for="article in articles" :key="article.id" class="article-item">
+          <router-link :to="article.url" class="article-link">
+            <h3 class="article-title">{{ article.title }}</h3>
+            <p class="article-summary">{{ article.summary }}</p>
+          </router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,6 +40,33 @@ import { useHead } from '@vueuse/head'
 
 export default {
   name: 'HomePage',
+  data() {
+    return {
+      articles: [
+        {
+          id: 1,
+          title: 'Grounding Techniques: Quick Ways to Calm Anxiety',
+          summary: 'Learn effective grounding techniques that can help you regain control during moments of anxiety or panic attacks.',
+          image: '/images/articles/grounding-techniques.jpg',
+          url: '/articles/grounding-techniques'
+        },
+        {
+          id: 2,
+          title: 'Understanding Panic Attacks: A Comprehensive Guide',
+          summary: 'Everything you need to know about panic attacks: symptoms, causes, and proven coping strategies.',
+          image: '/images/articles/panic-attacks.jpg',
+          url: '/articles/understanding-panic-attacks'
+        },
+        {
+          id: 3,
+          title: 'Breathing Exercises for Immediate Stress Relief',
+          summary: 'Simple yet powerful breathing techniques you can use anywhere to quickly reduce stress and anxiety.',
+          image: '/images/articles/breathing-exercises.jpg',
+          url: '/articles/breathing-exercises'
+        }
+      ]
+    }
+  },
   methods: {
     startDiagnostics() {
       this.$router.push('/diagnostics')
@@ -164,5 +204,62 @@ export default {
 
 :deep(.el-card__body) {
   padding: 0;
+}
+
+.articles-section {
+  margin-top: 40px;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.article-item {
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 24px;
+}
+
+.article-item:last-child {
+  border-bottom: none;
+}
+
+.article-link {
+  text-decoration: none;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.article-link:hover {
+  transform: translateX(8px);
+}
+
+.article-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  color: #15293E;
+  margin-bottom: 12px;
+}
+
+.article-summary {
+  font-size: 16px;
+  color: #696E76;
+  line-height: 1.6;
+}
+
+/* Удаляем неиспользуемые стили */
+.articles-grid,
+.article-card,
+.article-image,
+.read-more-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 20px;
+  }
 }
 </style>

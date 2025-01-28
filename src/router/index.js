@@ -6,6 +6,9 @@ import DiagnosticsPage from '../views/DiagnosticsPage.vue';
 import ExercisesPage from '../views/ExercisesPage.vue';
 import HotlinePage from '../views/HotlinePage.vue';
 import HomePage from '@/views/HomePage.vue';
+import GroundingTechniquesArticle from '@/views/articles/GroundingTechniquesArticle.vue'
+import PanicAttacksArticle from '@/views/articles/PanicAttacksArticle.vue'
+import BreathingExercisesArticle from '@/views/articles/BreathingExercisesArticle.vue'
 
 const routes = [
   {
@@ -50,6 +53,30 @@ const routes = [
     path: '/hotline',
     name: 'Hotline',
     component: HotlinePage
+  },
+  {
+    path: '/articles/grounding-techniques',
+    name: 'GroundingTechniques',
+    component: GroundingTechniquesArticle,
+    meta: {
+      title: 'Grounding Techniques | ifeellow'
+    }
+  },
+  {
+    path: '/articles/understanding-panic-attacks',
+    name: 'PanicAttacks',
+    component: PanicAttacksArticle,
+    meta: {
+      title: 'Understanding Panic Attacks | ifeellow'
+    }
+  },
+  {
+    path: '/articles/breathing-exercises',
+    name: 'BreathingExercises',
+    component: BreathingExercisesArticle,
+    meta: {
+      title: 'Breathing Exercises | ifeellow'
+    }
   },
   {
     path: '/:pathMatch(.*)*',
