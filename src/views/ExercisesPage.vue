@@ -15,10 +15,6 @@
               <p>Follow the animation and breathe in the indicated rhythm:</p>
               
               <div class="animation-container">
-                <div class="breathing-text" v-if="isBreathingActive">
-                  {{ breathingPhase }}
-                </div>
-                
                 <dotlottie-player
                   ref="lottiePlayer"
                   src="/ifeellow/breathing-animation.lottie"
@@ -503,21 +499,6 @@ const resetGrounding = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.breathing-text {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  font-weight: 500;
-  color: #2864A4;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 8px 16px;
-  border-radius: 8px;
-  z-index: 1;
 }
 
 .breathing-button {
