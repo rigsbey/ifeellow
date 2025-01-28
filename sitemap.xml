@@ -30,4 +30,22 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://ifeellow.com/articles/grounding-techniques</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ifeellow.com/articles/understanding-panic-attacks</loc>
+    <lastmod>2024-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ifeellow.com/articles/breathing-exercises</loc>
+    <lastmod>2024-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset> 
