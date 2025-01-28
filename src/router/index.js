@@ -59,7 +59,9 @@ const routes = [
     name: 'GroundingTechniques',
     component: GroundingTechniquesArticle,
     meta: {
-      title: 'Grounding Techniques | ifeellow'
+      title: 'Grounding Techniques for Anxiety: Evidence-Based Methods | ifeellow',
+      description: 'Learn scientifically proven grounding techniques for quick anxiety relief. Research-backed exercises and expert recommendations for managing anxiety effectively.',
+      keywords: 'grounding techniques, anxiety management, 5-4-3-2-1 method, anxiety relief, anxiety research'
     }
   },
   {
@@ -67,7 +69,9 @@ const routes = [
     name: 'PanicAttacks',
     component: PanicAttacksArticle,
     meta: {
-      title: 'Understanding Panic Attacks | ifeellow'
+      title: 'Understanding Panic Attacks: Complete Guide to Symptoms & Treatment | ifeellow',
+      description: 'Comprehensive guide to panic attacks: causes, symptoms, treatment methods, and scientific research. Practical advice for managing panic attacks.',
+      keywords: 'panic attacks, panic attack symptoms, panic attack treatment, anxiety disorder'
     }
   },
   {
@@ -75,7 +79,9 @@ const routes = [
     name: 'BreathingExercises',
     component: BreathingExercisesArticle,
     meta: {
-      title: 'Breathing Exercises | ifeellow'
+      title: 'Breathing Exercises for Stress Relief: Scientific Approach | ifeellow',
+      description: 'Effective breathing techniques for quick stress and anxiety relief. Scientific research and proven methods for stress management.',
+      keywords: 'breathing exercises, stress management, breathing techniques, anxiety reduction'
     }
   },
   {

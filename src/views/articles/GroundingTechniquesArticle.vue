@@ -1,13 +1,13 @@
 <template>
-  <div class="article-container">
-    <div class="article-header">
-      <h1>Grounding Techniques: Quick Ways to Calm Anxiety</h1>
+  <article class="article-container">
+    <header class="article-header">
+      <h1 itemprop="headline">Grounding Techniques: Quick Ways to Calm Anxiety</h1>
       <div class="article-meta">
-        <span class="article-date">January 28, 2024</span>
-        <span class="article-reading-time">8 min read</span>
+        <time itemprop="datePublished" :datetime="article.date">{{ article.date }}</time>
+        <span class="article-reading-time">{{ article.readingTime }} min read</span>
       </div>
-    </div>
-    <div class="article-content">
+    </header>
+    <div class="article-content" itemprop="articleBody">
       <h2>Introduction</h2>
       <p>Grounding techniques are evidence-based strategies that help reconnect you with the present moment when anxiety threatens to overwhelm you. According to a study published in the Journal of Clinical Psychology (Smith et al., 2021), these methods can significantly reduce anxiety symptoms within minutes of application.</p>
 
@@ -50,8 +50,33 @@
         <p>3. Brown, A., et al. (2023). "Meta-analysis of Grounding Techniques in Anxiety Treatment." Journal of Anxiety Disorders, 32(1), 45-67.</p>
       </div>
     </div>
-  </div>
+    <footer class="references">
+      <h2>References</h2>
+      <div class="references">
+        <p>1. Smith, J., et al. (2021). "Effectiveness of Grounding Techniques in Anxiety Management." Journal of Clinical Psychology, 45(2), 112-128.</p>
+        <p>2. Johnson, R., & Williams, M. (2022). "Parasympathetic Activation Through Grounding Exercises." University of Michigan Medical Research Journal, 15(4), 78-92.</p>
+        <p>3. Brown, A., et al. (2023). "Meta-analysis of Grounding Techniques in Anxiety Treatment." Journal of Anxiety Disorders, 32(1), 45-67.</p>
+      </div>
+    </footer>
+  </article>
 </template>
+
+<script>
+import articleSEOMixin from '@/mixins/articleSEOMixin'
+
+export default {
+  name: 'GroundingTechniquesArticle',
+  mixins: [articleSEOMixin],
+  data() {
+    return {
+      article: {
+        date: '2024-01-28',
+        // ... остальные данные
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 .article-container {

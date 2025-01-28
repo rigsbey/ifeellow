@@ -25,6 +25,21 @@
         <p>1. Lee, H., et al. (2022). "Coping Strategies for Panic Attacks: A Review." Journal of Anxiety Disorders, 45(3), 123-135.</p>
       </div>
     </div>
+    <div class="related-articles">
+      <h3>Related Articles</h3>
+      <ul>
+        <li>
+          <router-link to="/articles/grounding-techniques">
+            Learn Grounding Techniques for Anxiety Management
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/articles/breathing-exercises">
+            Effective Breathing Exercises for Panic Attack Prevention
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
