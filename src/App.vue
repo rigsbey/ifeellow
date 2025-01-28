@@ -21,11 +21,28 @@ export default {
   },
   setup() {
     useHead({
-      title: 'Immediate Help for Stress and Anxiety | Online Support',
+      htmlAttrs: {
+        lang: 'ru'
+      },
+      title: 'Психологическая поддержка онлайн | ifeellow',
       meta: [
-        { name: 'description', content: 'Get immediate help for stress and anxiety with our online support. Breathing exercises, grounding techniques, and more.' },
-        { name: 'keywords', content: 'stress relief, anxiety help, mental health support, breathing exercises, grounding techniques' },
-        { name: 'author', content: 'Your Name' }
+        { 
+          name: 'description', 
+          content: 'Получите мгновенную психологическую поддержку онлайн. Дыхательные упражнения, техники заземления и профессиональная помощь.' 
+        },
+        { 
+          name: 'keywords', 
+          content: 'психологическая помощь, снятие стресса, тревожность, дыхательные упражнения, онлайн поддержка' 
+        },
+        { name: 'author', content: 'ifeellow' },
+        { name: 'geo.region', content: 'RU' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: 'Психологическая поддержка онлайн | ifeellow' },
+        { property: 'og:description', content: 'Получите мгновенную психологическую поддержку онлайн' },
+        { property: 'og:image', content: '/og-image.jpg' }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://yourwebsite.com' }
       ]
     })
   }

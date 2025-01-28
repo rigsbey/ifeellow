@@ -11,7 +11,11 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomePage
+    component: HomePage,
+    meta: {
+      title: 'Главная | ifeellow',
+      description: 'Получите мгновенную психологическую поддержку онлайн'
+    }
   },
   {
     path: '/diary',
@@ -36,7 +40,11 @@ const routes = [
   {
     path: '/exercises',
     name: 'Exercises',
-    component: ExercisesPage
+    component: ExercisesPage,
+    meta: {
+      title: 'Упражнения | ifeellow',
+      description: 'Дыхательные практики и техники заземления для снятия стресса'
+    }
   },
   {
     path: '/hotline',
@@ -61,6 +69,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.skipIfVisited && visitedBefore === 'true') {
     next('/home');
   } else {
+    if (to.meta.title) {
+      document.title = to.meta.title
+    }
     next();
   }
 });
